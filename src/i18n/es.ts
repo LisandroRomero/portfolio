@@ -68,10 +68,9 @@ export const es = {
       company: "Universidad Tecnológica Nacional (UTN)",
       period: "marzo 2025 - julio 2025",
       description:
-        "Tutor académico para alumnos ingresantes de la Tecnicatura en Programación. Asistencia en la resolución de ejercicios, explicación de conceptos fundamentales de programación y acompañamiento en la adaptación a la lógica de pensamiento computacional. Apoyo en temas de POO, estructuras de control, algoritmos y buenas prácticas de desarrollo.",
+        "Tutor académico para alumnos ingresantes de la Tecnicatura en Programación. Asistencia en la resolución de ejercicios, explicación de conceptos fundamentales de programación y acompañamiento en la adaptación a la lógica de pensamiento computacional. Estructuras de control, algoritmos y buenas prácticas de desarrollo.",
       technologies: [
-        "Java",
-        "POO",
+        
         "Algoritmos",
         "Lógica de Programación",
         "Buenas Prácticas"
@@ -80,21 +79,66 @@ export const es = {
   ]
 },
     
-      projects: {
-        title: "Proyectos",
-        description:
-          "Algunos de los proyectos en los que trabajé, enfocados en desarrollo backend, APIs REST y buenas prácticas de arquitectura."
-      },
+projects: {
+  title: "Proyectos",
+  items: [
+    {
+      name: "Sistema de Gestión de Biblioteca",
+      description:
+        "Aplicación backend desarrollada en Java basada en un diseño UML orientado a objetos. Permite gestionar libros, usuarios y préstamos, aplicando principios de arquitectura en capas y buenas prácticas de programación orientada a objetos.",
+      technologies: ["Java", "POO", "UML", "Arquitectura en Capas", "MySQL"],
+      link: "#"
+    },
+    {
+      name: "API REST de Reservas (FastAPI + Supabase)",
+      description:
+        "API REST desarrollada con FastAPI para la gestión de reservas y usuarios. Implementa autenticación, validaciones y persistencia en PostgreSQL mediante Supabase. Diseñada siguiendo arquitectura en capas y buenas prácticas backend.",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Supabase",
+        "PostgreSQL",
+        "Docker",
+        "REST APIs"
+      ],
+      demo: "#",
+      repo:"#"
+    },
+    {
+      name: "Sistema de Gestión de Tareas",
+      description:
+        "Aplicación full stack para la gestión de tareas con operaciones CRUD completas. Incluye autenticación de usuarios, manejo de estados y diseño modular enfocado en escalabilidad y mantenibilidad.",
+      technologies: [
+        "React",
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "MongoDB",
+        "REST APIs"
+      ],
+      demo: "#",
+      repo :"#"
+    }
+  ]
+},
     
-      contact: {
-        title: "Contacto",
-        description:
-          "¿Te interesa trabajar conmigo o querés saber más sobre mis proyectos? Podés contactarme a través de mis redes o por email."
-      },
+contact: {
+  title: "Contacto",
+  description:
+    "¿Te interesa trabajar conmigo o querés saber más sobre mis proyectos? Enviame un mensaje.",
+  form: {
+    name: "Nombre",
+    email: "Email",
+    message: "Mensaje",
+    send: "Enviar mensaje"
+  }
+},
     
-      footer: {
-        builtWith: "Construido con React + TypeScript"
-      },
+footer: {
+  rights: "Todos los derechos reservados.",
+  builtWith: "Construido con React + TypeScript"
+}
+,
       navbar: {
         home: "Inicio",
         about: "Sobre mí",

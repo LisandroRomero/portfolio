@@ -69,10 +69,9 @@ export const en = {
             company: "National Technological University (UTN)",
             period: "2025",
             description:
-              "Academic tutor for first-year students in the Programming Technician program. Assisted with exercises, explained core programming concepts, and supported students in developing computational thinking. Covered topics such as OOP, control structures, algorithms, and development best practices.",
+              "Academic tutor for first-year students in the Programming Technician program. Assisted with exercises, explained core programming concepts, and supported students in developing computational thinking. Covered topics such control structures, algorithms, and development best practices.",
             technologies: [
-              "Java",
-              "OOP",
+              
               "Algorithms",
               "Programming Logic",
               "Best Practices"
@@ -81,21 +80,67 @@ export const en = {
         ]
       },
   
-    projects: {
-      title: "Projects",
-      description:
-        "Some of the projects I have worked on, focused on backend development, REST APIs, and good architecture practices.",
-    },
+      projects: {
+        title: "Projects",
+        items: [
+          {
+            name: "Library Management System",
+            description:
+              "Backend application developed in Java based on an object-oriented UML design. It manages books, users, and loans while applying layered architecture and OOP best practices.",
+            technologies: ["Java", "OOP", "UML", "Layered Architecture", "MySQL"],
+            demo: "https://mi-demo.com",
+            repo: "https://github.com/tuusuario/mi-api"
+          },
+          {
+            name: "Reservation REST API (FastAPI + Supabase)",
+            description:
+              "REST API built with FastAPI for managing reservations and users. Implements authentication, validations, and PostgreSQL persistence using Supabase. Designed following layered architecture and backend best practices.",
+            technologies: [
+              "Python",
+              "FastAPI",
+              "Supabase",
+              "PostgreSQL",
+              "Docker",
+              "REST APIs"
+            ],
+            demo: "https://mi-demo.com",
+            repo: "https://github.com/tuusuario/mi-api"
+          },
+          {
+            name: "Task Management System",
+            description:
+              "Full stack application for task management with complete CRUD operations. Includes user authentication, state handling, and a modular design focused on scalability and maintainability.",
+            technologies: [
+              "React",
+              "Node.js",
+              "Express",
+              "TypeScript",
+              "MongoDB",
+              "REST APIs"
+            ],
+            link: "#"
+          }
+        ]
+      },
   
-    contact: {
-      title: "Contact",
-      description:
-        "Interested in working with me or learning more about my projects? You can reach out through my social networks or via email.",
-    },
+      contact: {
+        title: "Contact",
+        description:
+          "Interested in working with me or learning more about my projects? Send me a message.",
+        form: {
+          name: "Name",
+          email: "Email",
+          message: "Message",
+          send: "Send message"
+        }
+      }
+      ,
   
-    footer: {
-      builtWith: "Built with React + TypeScript",
-    },
+      footer: {
+        rights: "All rights reserved.",
+        builtWith: "Built with React + TypeScript"
+      }
+      ,
     navbar: {
         home: "Home",
         about: "About",
