@@ -41,7 +41,7 @@ export const es = {
     {
       role: "Desarrollador Full Stack",
       company: "Unveil Creators Corp",
-      period: "septiembre 2025 - Presente",
+      period: "2025",
       description:
         "Participación en el desarrollo de un producto SaaS para la gestión integral de restaurantes, trabajando tanto en frontend como backend en entornos productivos. Implementación de funcionalidades de reservas automatizadas integradas con WhatsApp y llamadas telefónicas mediante IA conversacional. Desarrollo de lógica de negocio para la gestión de mesas, zonas, reservas, órdenes, pagos y usuarios, asegurando escalabilidad y consistencia del sistema. Integración con sistemas TPV utilizando Square y manejo de suscripciones y planes mediante Stripe. Participación en despliegues, mantenimiento y gestión de entornos de desarrollo, testing y producción.",
       technologies: [
@@ -66,7 +66,7 @@ export const es = {
     {
       role: "Tutor de Programación",
       company: "Universidad Tecnológica Nacional (UTN)",
-      period: "marzo 2025 - julio 2025",
+      period: "2025",
       description:
         "Tutor académico para alumnos ingresantes de la Tecnicatura en Programación. Asistencia en la resolución de ejercicios, explicación de conceptos fundamentales de programación y acompañamiento en la adaptación a la lógica de pensamiento computacional. Estructuras de control, algoritmos y buenas prácticas de desarrollo.",
       technologies: [
