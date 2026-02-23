@@ -74,7 +74,8 @@ export const en = {
               
               "Algorithms",
               "Programming Logic",
-              "Best Practices"
+              "Best Practices",
+              "PSeInt"
             ]
           }
         ]
@@ -84,41 +85,26 @@ export const en = {
         title: "Projects",
         items: [
           {
-            name: "Library Management System",
+            name: "PokeApp",
             description:
-              "Backend application developed in Java based on an object-oriented UML design. It manages books, users, and loans while applying layered architecture and OOP best practices.",
-            technologies: ["Java", "OOP", "UML", "Layered Architecture", "MySQL"],
-            demo: "https://mi-demo.com",
-            repo: "https://github.com/tuusuario/mi-api"
+              "Single Page Application (SPA) that consumes the PokeAPI. It includes logical card sorting, creation of new Pokémon through a controlled form, and a complete CRUD flow.",
+            technologies: ["JavaScript", "Express", "ReactJS", "Redux", "PostgreSQL"],
+            demo: "https://www.youtube.com/watch?v=6EAasKPHyyA",
+            repo: "https://github.com/LisandroRomero/Pokemon-PI"
           },
           {
-            name: "Reservation REST API (FastAPI + Supabase)",
+            name: "AirLand",
             description:
-              "REST API built with FastAPI for managing reservations and users. Implements authentication, validations, and PostgreSQL persistence using Supabase. Designed following layered architecture and backend best practices.",
+              "Air Force 1 sneakers e-commerce built by a team of five developers. Features include authentication, admin dashboard, logical product sorting, and an integrated payment system.",
             technologies: [
-              "Python",
-              "FastAPI",
-              "Supabase",
-              "PostgreSQL",
-              "Docker",
-              "REST APIs"
-            ],
-            demo: "https://mi-demo.com",
-            repo: "https://github.com/tuusuario/mi-api"
-          },
-          {
-            name: "Task Management System",
-            description:
-              "Full stack application for task management with complete CRUD operations. Includes user authentication, state handling, and a modular design focused on scalability and maintainability.",
-            technologies: [
-              "React",
-              "Node.js",
+              "JavaScript",
               "Express",
-              "TypeScript",
-              "MongoDB",
-              "REST APIs"
+              "ReactJS",
+              "Redux",
+              "Firebase"
             ],
-            link: "#"
+            demo: "https://www.youtube.com/watch?v=ohav_dRQjIM",
+            repo: "https://github.com/lauticometti/AirLand"
           }
         ]
       },

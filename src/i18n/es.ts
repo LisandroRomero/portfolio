@@ -73,7 +73,8 @@ export const es = {
         
         "Algoritmos",
         "Lógica de Programación",
-        "Buenas Prácticas"
+        "Buenas Prácticas",
+        "PSeInt"
       ]
     }
   ]
@@ -83,41 +84,26 @@ projects: {
   title: "Proyectos",
   items: [
     {
-      name: "Sistema de Gestión de Biblioteca",
+      name: "PokeApp",
       description:
-        "Aplicación backend desarrollada en Java basada en un diseño UML orientado a objetos. Permite gestionar libros, usuarios y préstamos, aplicando principios de arquitectura en capas y buenas prácticas de programación orientada a objetos.",
-      technologies: ["Java", "POO", "UML", "Arquitectura en Capas", "MySQL"],
-      link: "#"
+        "Single Page Application (SPA) que consume la API de PokeAPI. Incluye ordenamiento lógico de tarjetas, creación de nuevos Pokémon mediante un formulario controlado y flujo completo de CRUD.",
+      technologies: ["JavaScript", "Express", "ReactJS", "Redux", "PostgreSQL"],
+      demo: "https://www.youtube.com/watch?v=6EAasKPHyyA",
+      repo: "https://github.com/LisandroRomero/Pokemon-PI"
     },
     {
-      name: "API REST de Reservas (FastAPI + Supabase)",
+      name: "AirLand",
       description:
-        "API REST desarrollada con FastAPI para la gestión de reservas y usuarios. Implementa autenticación, validaciones y persistencia en PostgreSQL mediante Supabase. Diseñada siguiendo arquitectura en capas y buenas prácticas backend.",
+        "E-commerce de zapatillas Air Force 1, desarrollado en equipo de 5 personas. Incluye autenticación, panel de administrador, ordenamiento lógico de productos y sistema de pagos integrado.",
       technologies: [
-        "Python",
-        "FastAPI",
-        "Supabase",
-        "PostgreSQL",
-        "Docker",
-        "REST APIs"
-      ],
-      demo: "#",
-      repo:"#"
-    },
-    {
-      name: "Sistema de Gestión de Tareas",
-      description:
-        "Aplicación full stack para la gestión de tareas con operaciones CRUD completas. Incluye autenticación de usuarios, manejo de estados y diseño modular enfocado en escalabilidad y mantenibilidad.",
-      technologies: [
-        "React",
-        "Node.js",
+        "JavaScript",
         "Express",
-        "TypeScript",
-        "MongoDB",
-        "REST APIs"
+        "ReactJS",
+        "Redux",
+        "Firebase"
       ],
-      demo: "#",
-      repo :"#"
+      demo: "https://www.youtube.com/watch?v=ohav_dRQjIM",
+      repo: "https://github.com/lauticometti/AirLand"
     }
   ]
 },
