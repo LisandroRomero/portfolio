@@ -11,9 +11,9 @@ export const es = {
     about:{
         title:"Sobre Mi",
         description:[
-            "Soy estudiante del ultimo semestre de la Tecnicatura Universitaria en programacion y Desarrollador Full Stack con experiencia en proyectos reales",
+            "Técnico Universitario en programación egresado de la UTN - FRM | Desarrollador Full Stack con experiencia en proyectos reales",
             " Trabajo en el desarrollo de aplicaciones web escalables, participando tanto en frontend como backend, con foco en la calidad del código, la mantenibilidad y la experiencia de usuario.",
-            " Actualmente utilizo Java, Spring Boot, Python ,JavaScript, TypeScript, Node.js y React / Next.js, integrando APIs, bases de datos y servicios externos"
+            " Actualmente utilizo Java, Spring Boot, Python ,JavaScript, TypeScript, NestJS ,Node.js y React / Next.js, integrando APIs, bases de datos y servicios externos"
 
         ]
     },
@@ -28,7 +28,7 @@ export const es = {
         },
         items: {
             frontend:["JavaScript","React","Next.js","Redux","HTML","CSS","Tailwind"],
-            backend: ["Java", "Spring Boot", "Python", "TypeScript","Express","Node.js"],
+            backend: ["Java", "Python","FastAPI", "TypeScript","Express","Node.js","Nest.js"],
             databases: ["MySQL", "PostgreSQL", "MongoDB","Supabase"],
             tools: ["Git", "Docker", "Postman"],
             concepts: ["REST APIs", "Arquitectura en capas", "POO", "Testing"]
