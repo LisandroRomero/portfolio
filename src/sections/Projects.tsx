@@ -36,7 +36,7 @@ function Projects() {
                 ))}
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 {project.demo && (
                   <a
                     href={project.demo}
@@ -47,15 +47,26 @@ function Projects() {
                   </a>
                 )}
 
-                {project.repo && (
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    className="rounded-lg border-2 border-[#404040] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#ff6b35] hover:text-[#ff6b35]"
-                  >
+                {Array.isArray(project.repo) ? (
+                  project.repo.map((repo, i) => (
+                    <a
+                      key={i}
+                      href={repo}
+                      target="_blank"
+                      className="rounded-lg border-2 border-[#404040] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#ff6b35] hover:text-[#ff6b35]"
+                    >
                     Código
                   </a>
-                )}
+                ))
+              ) : (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  className="rounded-lg border-2 border-[#404040] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#ff6b35] hover:text-[#ff6b35]"
+                >
+                  Código
+                </a>
+              )}
               </div>
             </div>
           ))}

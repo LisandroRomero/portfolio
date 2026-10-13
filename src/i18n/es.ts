@@ -104,6 +104,21 @@ projects: {
       ],
       demo: "https://www.youtube.com/watch?v=ohav_dRQjIM",
       repo: "https://github.com/lauticometti/AirLand"
+    },
+    {
+      name: "Food-Store",
+      description:
+        "Sistema de Gestión de Pedidos de Comida desarrollado en equipo de 4 personas. Incluye autenticación, panel de administrador, ordenamiento lógico de productos y sistema de pagos integrado.",
+      technologies: [
+        "TypeScript",
+        "ReactJS",
+        "Tailwind CSS",
+        "Zustand",
+        "TanStack Query",
+        "TanStack Form",
+      ],
+      demo: "https://youtu.be/NTcbaiYz9p8",
+      repo: ["https://github.com/PabloAVivas/Parcial2Prog4","https://github.com/LisandroRomero/Food-Store-Front-Admin","https://github.com/LisandroRomero/Food-Store-Front-Store"]
     }
   ]
 },

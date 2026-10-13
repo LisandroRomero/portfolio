@@ -1,7 +1,7 @@
 import profilepick from "../assets/profilepick.png"
 import { useLanguage } from "../context/languageContext";
-import cvEs from "../assets/CV-LisandroRomero.pdf"
 import cvEn from "../assets/Lisandro_Romero_CV_EN.pdf"
+import cvEs from "../assets/CV-LisandroRomero.pdf"
 
 function Hero() {
 

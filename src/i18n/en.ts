@@ -11,7 +11,7 @@ export const en = {
     about: {
       title: "About Me",
       description:[
-        "I am currently in the last semester of the University Programming Degree at the National Technological University and a Full Stack Developer with experience in real-world projects.",
+        "I am recently graduated from the University Programming Degree at the National Technological University and a Full Stack Developer with experience in real-world projects.",
         "I work on scalable web applications, contributing to both frontend and backend, focusing on code quality, maintainability, and user experience.",
         "Currently I use Java, Spring Boot, Python, JavaScript, TypeScript, Node.js, and React / Next.js, integrating APIs, databases, and external services."
 
@@ -105,6 +105,21 @@ export const en = {
             ],
             demo: "https://www.youtube.com/watch?v=ohav_dRQjIM",
             repo: "https://github.com/lauticometti/AirLand"
+          },
+          {
+            name: "Food-Store",
+            description:
+              "Food order management system developed by a team of four developers. Features include authentication, admin dashboard, logical product sorting, and an integrated payment system.",
+            technologies: [
+              "TypeScript",
+              "ReactJS",
+              "Tailwind CSS",
+              "Zustand",
+              "TanStack Query",
+              "TanStack Form"
+            ],
+            demo: "https://youtu.be/NTcbaiYz9p8",
+            repo: ["https://github.com/PabloAVivas/Parcial2Prog4","https://github.com/LisandroRomero/Food-Store-Front-Admin","https://github.com/LisandroRomero/Food-Store-Front-Store"]
           }
         ]
       },
