@@ -1,0 +1,9 @@
+# Archivos binarios: Git no debe convertir finales de línea ni hacer diff de texto
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
