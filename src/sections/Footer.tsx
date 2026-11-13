@@ -1,37 +1,28 @@
 import { useLanguage } from "../context/languageContext";
+import { LINKS } from "../data/links";
+
+const linkClass = "transition-colors hover:text-white";
 
 function Footer() {
   const { translations: t } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#404040] bg-[#2a2a34] px-6 py-10 text-center">
-      <p className="text-sm text-[#b0b0b0]">
-        © {year} Lisandro Romero. {t.footer.rights}
-      </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-muted md:flex-row">
+        <p>
+          © {year} Lisandro Romero. {t.footer.rights}
+          <span className="hidden md:inline"> · {t.footer.builtWith}</span>
+        </p>
 
-      <p className="mt-2 text-sm text-[#b0b0b0]">
-        {t.footer.builtWith}
-      </p>
-
-      <div className="mt-6 flex justify-center gap-6">
-        <a
-          href="https://github.com/LisandroRomero"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#b0b0b0] transition-colors hover:text-[#ff6b35]"
-        >
-          GitHub
-        </a>
-
-        <a
-          href="https://linkedin.com/in/lisandroromero18"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#b0b0b0] transition-colors hover:text-[#ff6b35]"
-        >
-          LinkedIn
-        </a>
+        <div className="flex gap-6">
+          <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
+            GitHub
+          </a>
+          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
+            LinkedIn
+          </a>
+        </div>
       </div>
     </footer>
   );

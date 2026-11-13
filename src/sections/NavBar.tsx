@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../context/languageContext";
 
+// id de la sección → clave del texto en translations.navbar
+const NAV_ITEMS = [
+  { id: "about", label: "about" },
+  { id: "skills", label: "skills" },
+  { id: "experience", label: "experience" },
+  { id: "projects", label: "projects" },
+  { id: "contact", label: "contact" },
+] as const;
+
 export default function NavBar() {
-  const { lang, setLang, translations } = useLanguage();
+  const { lang, setLang, translations: t } = useLanguage();
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleLanguage = () => {
-    setLang(lang === "es" ? "en" : "es");
-  };
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleLanguage = () => setLang(lang === "es" ? "en" : "es");
+  const toggleMenu = () => setMenuOpen((open) => !open);
+  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -18,71 +26,90 @@ export default function NavBar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      {
-        root: null,
-        rootMargin: "-40% 0px -50% 0px",
-        threshold: 0,
-      }
+      { root: null, rootMargin: "-40% 0px -50% 0px", threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const linkClass = (id: string) =>
-    `block transition-colors duration-300 ${
-      activeSection === id
-        ? "text-[#ff6b35]"
-        : "text-[#b0b0b0] hover:text-[#ff6b35]"
+    `relative block py-1 transition-colors duration-300 ${
+      activeSection === id ? "text-white" : "text-muted hover:text-white"
     }`;
 
+  const renderLinks = (onClick?: () => void) =>
+    NAV_ITEMS.map(({ id, label }) => (
+      <li key={id}>
+        <a
+          href={`#${id}`}
+          onClick={onClick}
+          className={linkClass(id)}
+          aria-current={activeSection === id ? "true" : undefined}
+        >
+          {t.navbar[label]}
+          {activeSection === id && (
+            <span className="absolute -bottom-1 left-0 hidden h-px w-full bg-accent md:block" />
+          )}
+        </a>
+      </li>
+    ));
+
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full bg-[#20202a]/90 backdrop-blur border-b border-[#404040]">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        
-        
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-white"
+    <nav
+      className={`fixed top-0 left-0 z-50 w-full border-b transition-colors duration-300 ${
+        scrolled || menuOpen
+          ? "border-line bg-surface/70 backdrop-blur-md"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a
+          href="#hero"
+          aria-label={t.navbar.home}
+          className="font-mono text-sm font-semibold tracking-wider text-white transition-colors hover:text-accent"
         >
-          ☰
-        </button>
+          LR<span className="text-accent">.</span>
+        </a>
 
-        
-        <ul className="hidden md:flex gap-6 text-sm font-medium">
-          <li><a href="#hero" className={linkClass("hero")}>{translations.navbar.home}</a></li>
-          <li><a href="#about" className={linkClass("about")}>{translations.navbar.about}</a></li>
-          <li><a href="#skills" className={linkClass("skills")}>{translations.navbar.skills}</a></li>
-          <li><a href="#experience" className={linkClass("experience")}>{translations.navbar.experience}</a></li>
-          <li><a href="#projects" className={linkClass("projects")}>{translations.navbar.projects}</a></li>
-          <li><a href="#contact" className={linkClass("contact")}>{translations.navbar.contact}</a></li>
-        </ul>
+        <div className="flex items-center gap-6">
+          <ul className="hidden gap-6 text-sm md:flex">{renderLinks()}</ul>
 
-       
-        <button
-          onClick={toggleLanguage}
-          className="rounded-lg border border-[#404040] px-3 py-1 text-sm text-white hover:border-[#ff6b35] hover:text-[#ff6b35] transition"
-        >
-          {lang === "es" ? "EN" : "ES"}
-        </button>
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            aria-label={t.navbar.switchLang}
+            className="rounded-full border border-line px-3 py-1 font-mono text-xs text-muted transition hover:border-accent/50 hover:text-white"
+          >
+            {lang === "es" ? "EN" : "ES"}
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleMenu}
+            aria-label={menuOpen ? t.navbar.closeMenu : t.navbar.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="text-xl text-white md:hidden"
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
 
-      
       {menuOpen && (
-        <div className="md:hidden bg-[#20202a]/95 backdrop-blur border-t border-[#404040]">
-          <ul className="flex flex-col gap-4 px-6 py-4 text-sm font-medium">
-            <li><a onClick={toggleMenu} href="#hero" className={linkClass("hero")}>{translations.navbar.home}</a></li>
-            <li><a onClick={toggleMenu} href="#about" className={linkClass("about")}>{translations.navbar.about}</a></li>
-            <li><a onClick={toggleMenu} href="#skills" className={linkClass("skills")}>{translations.navbar.skills}</a></li>
-            <li><a onClick={toggleMenu} href="#experience" className={linkClass("experience")}>{translations.navbar.experience}</a></li>
-            <li><a onClick={toggleMenu} href="#projects" className={linkClass("projects")}>{translations.navbar.projects}</a></li>
-            <li><a onClick={toggleMenu} href="#contact" className={linkClass("contact")}>{translations.navbar.contact}</a></li>
-          </ul>
+        <div id="mobile-menu" className="border-t border-line md:hidden">
+          <ul className="flex flex-col gap-3 px-6 py-4 text-sm">{renderLinks(closeMenu)}</ul>
         </div>
       )}
     </nav>

@@ -1,30 +1,28 @@
-import { useLanguage } from "../context/languageContext"
+import Reveal from "../components/ui/Reveal";
+import Section from "../components/ui/Section";
+import SectionTitle from "../components/ui/SectionTitle";
+import { useLanguage } from "../context/languageContext";
 
 function About() {
+  const { translations: t } = useLanguage();
+  const [lead, ...rest] = t.about.description;
 
-    const {translations}= useLanguage()
+  return (
+    <Section id="about">
+      <Reveal>
+        <SectionTitle>{t.about.title}</SectionTitle>
 
-    return (  
-        <section
-          id="about"
-          className="bg-[#20202a] px-6 py-20"
-        >
-            <div className="mx-auto max-w-3xl text-center">
-                <h2 className="mb-10 text-3xl font-semibold text-white md:text-4xl relative">
-                    {translations.about.title}
-                    <span className="absolute left-1/2 -bottom-3 h-[3px] w-14 -translate-x-1/2 rounded bg-[#ff6b35]"></span>
-                </h2>
-
-                <div className="rounded-xl border-2 border-[#ff6b35] bg-[#2a2a34] p-6 shadow-lg space-y-5 text-base leading-relaxed text-[#b0b0b0] md:text-lg">
-                    {translations.about.description.map((text, index) => (
-                        <p key={index}>
-                            {text}
-                        </p>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+        <div className="max-w-3xl space-y-5 leading-relaxed">
+          <p className="text-xl text-gray-200 md:text-2xl md:leading-snug">{lead}</p>
+          {rest.map((text) => (
+            <p key={text} className="text-muted md:text-lg">
+              {text}
+            </p>
+          ))}
+        </div>
+      </Reveal>
+    </Section>
+  );
 }
 
-export default About
+export default About;

@@ -1,83 +1,114 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import ButtonLink from "../components/ui/ButtonLink";
+import Card from "../components/ui/Card";
+import Reveal from "../components/ui/Reveal";
+import Section from "../components/ui/Section";
+import SectionTitle from "../components/ui/SectionTitle";
 import { useLanguage } from "../context/languageContext";
+import { LINKS } from "../data/links";
+
+type Status = "idle" | "sending" | "success" | "error";
+
+const fieldClass =
+  "w-full rounded-xl border border-line bg-surface/60 px-4 py-3 text-white placeholder-muted/70 transition focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none";
 
 function Contact() {
   const { translations: t } = useLanguage();
   const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<Status>("idle");
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.current) return;
+    if (!form.current || status === "sending") return;
 
-    emailjs
-      .sendForm(
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE,
         import.meta.env.VITE_EMAILJS_TEMPLATE,
         form.current,
         import.meta.env.VITE_EMAILJS_PUBLIC
-      )
-      .then(
-        () => {
-          alert("Mensaje enviado correctamente");
-          form.current?.reset();
-        },
-        (error) => {
-          console.error(error);
-          alert("Error al enviar el mensaje");
-        }
       );
+      setStatus("success");
+      form.current.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   };
 
+  const isSending = status === "sending";
+
   return (
-    <section id="contact" className="bg-[#20202a] px-6 py-20">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="mb-6 text-center text-3xl font-semibold text-white md:text-4xl">
-          {t.contact.title}
-        </h2>
+    <Section id="contact">
+      <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
+        <Reveal>
+          <SectionTitle subtitle={t.contact.description}>{t.contact.title}</SectionTitle>
+          <div className="flex flex-wrap gap-3">
+            <ButtonLink href={LINKS.linkedin} external>
+              LinkedIn ↗
+            </ButtonLink>
+            <ButtonLink href={LINKS.github} external>
+              GitHub ↗
+            </ButtonLink>
+          </div>
+        </Reveal>
 
-        <p className="mb-12 text-center text-[#b0b0b0]">
-          {t.contact.description}
-        </p>
+        <Reveal delay={100}>
+          <Card className="md:p-8">
+            <form ref={form} onSubmit={sendEmail} className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input
+                  type="text"
+                  name="user_name"
+                  placeholder={t.contact.form.name}
+                  aria-label={t.contact.form.name}
+                  autoComplete="name"
+                  required
+                  className={fieldClass}
+                />
+                <input
+                  type="email"
+                  name="user_email"
+                  placeholder={t.contact.form.email}
+                  aria-label={t.contact.form.email}
+                  autoComplete="email"
+                  required
+                  className={fieldClass}
+                />
+              </div>
 
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="rounded-xl border-2 border-[#ff6b35] bg-[#2a2a34] p-8 shadow-lg space-y-5"
-        >
-          <input
-            type="text"
-            name="user_name"
-            placeholder={t.contact.form.name}
-            required
-            className="w-full rounded-lg border-2 border-[#404040] bg-[#20202a] px-4 py-3 text-white placeholder-[#b0b0b0] focus:border-[#ff6b35] focus:outline-none"
-          />
+              <textarea
+                name="message"
+                placeholder={t.contact.form.message}
+                aria-label={t.contact.form.message}
+                required
+                rows={5}
+                className={`${fieldClass} resize-y`}
+              />
 
-          <input
-            type="email"
-            name="user_email"
-            placeholder={t.contact.form.email}
-            required
-            className="w-full rounded-lg border-2 border-[#404040] bg-[#20202a] px-4 py-3 text-white placeholder-[#b0b0b0] focus:border-[#ff6b35] focus:outline-none"
-          />
+              <button
+                type="submit"
+                disabled={isSending}
+                className="w-full rounded-full bg-accent-strong py-3 font-medium text-white shadow-[0_0_24px] shadow-accent-hover/30 transition-all duration-300 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSending ? t.contact.form.sending : t.contact.form.send}
+              </button>
 
-          <textarea
-            name="message"
-            placeholder={t.contact.form.message}
-            required
-            rows={5}
-            className="w-full rounded-lg border-2 border-[#404040] bg-[#20202a] px-4 py-3 text-white placeholder-[#b0b0b0] focus:border-[#ff6b35] focus:outline-none"
-          />
-
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-[#ff6b35] py-3 font-semibold text-white transition-all duration-300 hover:bg-[#e55a2b]"
-          >
-            {t.contact.form.send}
-          </button>
-        </form>
+              <p
+                role="status"
+                aria-live="polite"
+                className={`text-center text-sm ${status === "error" ? "text-red-400" : "text-emerald-400"}`}
+              >
+                {status === "success" && t.contact.form.success}
+                {status === "error" && t.contact.form.error}
+              </p>
+            </form>
+          </Card>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }
 

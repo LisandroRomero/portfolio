@@ -1,10 +1,12 @@
 import type React from "react";
 import { createContext, useContext } from "react";
-import type { Translations } from "../i18n/es";
+import type { Translations } from "../i18n/types";
+
+export type Lang = "es" | "en";
 
 export interface LanguageContextValue {
-  lang: string;
-  setLang: React.Dispatch<React.SetStateAction<string>>;
+  lang: Lang;
+  setLang: React.Dispatch<React.SetStateAction<Lang>>;
   translations: Translations;
 }
 

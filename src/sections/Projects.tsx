@@ -1,78 +1,111 @@
+import ButtonLink from "../components/ui/ButtonLink";
+import Card from "../components/ui/Card";
+import Reveal from "../components/ui/Reveal";
+import Section from "../components/ui/Section";
+import SectionTitle from "../components/ui/SectionTitle";
+import Tag from "../components/ui/Tag";
 import { useLanguage } from "../context/languageContext";
+import { PROJECTS, visibleProjects, type Project } from "../data/projects";
 
 function Projects() {
   const { translations: t } = useLanguage();
+  const { labels } = t.projects;
+
+  const renderLinks = (project: Project) => {
+    const { live, demo, repos } = project.links;
+    if (!live && !demo && repos.length === 0) return null;
+
+    return (
+      <div className="flex flex-wrap gap-3">
+        {live && (
+          <ButtonLink href={live} variant="primary" external>
+            {labels.live} ↗
+          </ButtonLink>
+        )}
+        {demo && (
+          <ButtonLink href={demo} variant="outline" external>
+            {labels.demo} ↗
+          </ButtonLink>
+        )}
+        {repos.map((repo) => (
+          <ButtonLink key={repo.url} href={repo.url} external>
+            {repo.label ?? labels.code}
+          </ButtonLink>
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <section id="projects" className="bg-[#20202a] px-6 py-20">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="mb-14 text-center text-3xl font-semibold text-white md:text-4xl relative">
-          {t.projects.title}
-          <span className="absolute left-1/2 -bottom-3 h-[3px] w-14 -translate-x-1/2 rounded bg-[#ff6b35]"></span>
-        </h2>
+    <Section id="projects">
+      <Reveal>
+        <SectionTitle>{t.projects.title}</SectionTitle>
+      </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {t.projects?.items?.map((project, index) => (
-            <div
-              key={index}
-              className="rounded-xl border-2 border-[#ff6b35] bg-[#2a2a34] p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {visibleProjects(PROJECTS).map((project, i) => {
+          const text = t.projects.items[project.id];
+          const featured = project.featured;
+
+          return (
+            <Reveal
+              key={project.id}
+              delay={featured ? 0 : i * 80}
+              className={featured ? "md:col-span-2 lg:col-span-3" : ""}
             >
-              <h3 className="mb-3 text-xl font-semibold text-white">
-                {project.name}
-              </h3>
+              <Card
+                interactive
+                className={`flex h-full flex-col gap-5 ${
+                  featured ? "bg-linear-to-br from-accent-strong/15 to-transparent ring-1 ring-accent/20 md:p-8" : ""
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className={`font-semibold text-white ${featured ? "text-2xl" : "text-lg"}`}>
+                    {project.name}
+                  </h3>
+                  {project.inProgress && (
+                    <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] text-accent">
+                      {labels.inProgress}
+                    </span>
+                  )}
+                </div>
 
-              <p className="mb-5 text-[#b0b0b0] leading-relaxed">
-                {project.description}
-              </p>
+                <div className={featured ? "grid gap-6 md:grid-cols-2" : ""}>
+                  <p className="leading-relaxed text-muted">{text.description}</p>
 
-              <div className="mb-5 flex flex-wrap gap-2">
-                {project.technologies?.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="rounded-md border border-[#ff6b35] px-2 py-1 text-sm text-[#ff6b35]"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+                  {text.highlights && (
+                    <ul className="space-y-2 text-sm leading-relaxed text-muted">
+                      {text.highlights.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
 
-              <div className="flex flex-wrap gap-4">
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    className="rounded-lg border-2 border-[#ff6b35] px-4 py-2 text-sm font-medium text-[#ff6b35] transition-all duration-300 hover:bg-[#ff6b35] hover:text-white"
-                  >
-                    Demo
-                  </a>
-                )}
+                <div className="mt-auto flex flex-col gap-5">
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <Tag key={tech} variant={featured ? "accent" : "neutral"}>
+                        {tech}
+                      </Tag>
+                    ))}
+                  </div>
 
-                {Array.isArray(project.repo) ? (
-                  project.repo.map((repo, i) => (
-                    <a
-                      key={i}
-                      href={repo}
-                      target="_blank"
-                      className="rounded-lg border-2 border-[#404040] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#ff6b35] hover:text-[#ff6b35]"
-                    >
-                    Código
-                  </a>
-                ))
-              ) : (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  className="rounded-lg border-2 border-[#404040] px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:border-[#ff6b35] hover:text-[#ff6b35]"
-                >
-                  Código
-                </a>
-              )}
-              </div>
-            </div>
-          ))}
-        </div>
+                  {renderLinks(project)}
+
+                  {project.privateRepo && (
+                    <p className="font-mono text-xs text-muted">🔒 {labels.privateRepo}</p>
+                  )}
+                </div>
+              </Card>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 }
 

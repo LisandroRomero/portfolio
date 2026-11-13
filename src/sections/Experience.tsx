@@ -1,73 +1,60 @@
+import Reveal from "../components/ui/Reveal";
+import Section from "../components/ui/Section";
+import SectionTitle from "../components/ui/SectionTitle";
+import Tag from "../components/ui/Tag";
 import { useLanguage } from "../context/languageContext";
+import { JOBS } from "../data/experience";
+import { formatPeriod } from "../utils/formatPeriod";
 
 function Experience() {
-  const { translations } = useLanguage();
+  const { translations: t, lang } = useLanguage();
 
   return (
-    <section
-      id="experience"
-      className="max-w-5xl mx-auto px-6 py-16"
-    >
-      <h2 className="text-3xl font-bold mb-10 border-b border-[#404040] pb-4">
-        {translations.experience.title}
-      </h2>
+    <Section id="experience">
+      <Reveal>
+        <SectionTitle>{t.experience.title}</SectionTitle>
+      </Reveal>
 
-      <div className="flex flex-col gap-8">
-        {translations.experience.jobs.map((job, index) => (
-          <div
-            key={index}
-            className="
-              bg-[#2a2a34]
-              border-2 border-[#ff6b35]
-              rounded-xl
-              p-6
-              shadow-lg
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:shadow-2xl
-              hover:border-[#e55a2b]
-            "
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-semibold text-white">
-                  {job.role}
-                </h3>
-                <h4 className="text-[#ff6b35] font-medium">
-                  {job.company}
-                </h4>
-              </div>
+      {/* Timeline: línea vertical + un punto por trabajo */}
+      <ol className="relative space-y-12 border-l border-line">
+        {JOBS.map((job) => {
+          const text = t.experience.jobs[job.id];
 
-              <span className="text-sm text-gray-400 whitespace-nowrap">
-                {job.period}
-              </span>
-            </div>
+          return (
+            <li key={job.id} className="relative pl-8 md:pl-10">
+              <span
+                aria-hidden="true"
+                className="absolute top-1.5 -left-[5px] h-[9px] w-[9px] rounded-full bg-accent ring-4 ring-accent/20"
+              />
+              <Reveal>
+                <p className="font-mono text-xs uppercase tracking-wider text-muted">
+                  {formatPeriod(job.start, job.end, lang, t.experience.present)}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold text-white">{text.role}</h3>
+                <p className="text-accent">{job.company}</p>
 
-            <p className="mt-4 text-gray-300 leading-relaxed">
-              {job.description}
-            </p>
+                <ul className="mt-4 max-w-3xl space-y-2 leading-relaxed text-muted">
+                  {text.highlights.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden="true" className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-            <div className="flex flex-wrap gap-2 mt-4">
-              {job.technologies.map((tech: string) => (
-                <span
-                  key={tech}
-                  className="
-                    px-3 py-1
-                    text-sm
-                    bg-[#20202a]
-                    border border-[#404040]
-                    rounded-full
-                    text-gray-200
-                  "
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+                {job.technologies.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {job.technologies.map((tech) => (
+                      <Tag key={tech}>{tech}</Tag>
+                    ))}
+                  </div>
+                )}
+              </Reveal>
+            </li>
+          );
+        })}
+      </ol>
+    </Section>
   );
 }
 
