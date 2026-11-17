@@ -3,14 +3,13 @@ import type { Translations } from "./types";
 export const es: Translations = {
   hero: {
     title: "Lisandro Romero",
-    role: "Full Stack Developer",
-    status: "Disponible para trabajar",
+    role: "Desarrollador full stack en Mendoza, Argentina",
     tagline:
-      "Desarrollador Full Stack con foco en backend: diseño APIs sólidas y las conecto con interfaces en React y Next.js.",
+      "Trabajo en todo el stack, pero donde más rindo es en el backend: modelar el negocio, diseñar la API y dejarla lista para un frontend en React o Next.js.",
     buttons: {
       github: "GitHub",
       linkedin: "LinkedIn",
-      cv: "Descargar CV",
+      cv: "Descargar CV (PDF)",
     },
   },
 
@@ -26,13 +25,11 @@ export const es: Translations = {
   skills: {
     title: "Tecnologías",
     categories: {
-      frontend: "Frontend",
       backend: "Backend",
       databases: "Bases de datos",
+      frontend: "Frontend",
       tools: "Herramientas",
-      concepts: "Conceptos",
     },
-    concepts: ["REST APIs", "Arquitectura en capas", "POO", "Testing"],
   },
 
   experience: {
@@ -40,20 +37,20 @@ export const es: Translations = {
     present: "Actualidad",
     jobs: {
       unveil: {
-        role: "Desarrollador Full Stack",
+        role: "Desarrollador full stack",
         highlights: [
-          "Desarrollé funcionalidades de frontend y backend para un SaaS de gestión integral de restaurantes en producción.",
-          "Implementé reservas automatizadas por WhatsApp y llamadas telefónicas con IA conversacional.",
+          "Desarrollé funcionalidades de frontend y backend para un SaaS de gestión de restaurantes en producción.",
+          "Implementé reservas automáticas por WhatsApp y por llamada telefónica, atendidas con IA conversacional.",
           "Modelé la lógica de negocio de mesas, zonas, reservas, órdenes, pagos y usuarios.",
-          "Integré sistemas TPV con Square y gestioné suscripciones y planes con Stripe.",
-          "Participé en despliegues y en la gestión de entornos de desarrollo, testing y producción.",
+          "Integré los sistemas de punto de venta con Square, y las suscripciones y planes con Stripe.",
+          "Trabajé en los despliegues y en los entornos de desarrollo, testing y producción.",
         ],
       },
       utnTutor: {
-        role: "Tutor de Programación",
+        role: "Tutor de programación",
         highlights: [
           "Acompañé a alumnos ingresantes de la Tecnicatura en Programación en la resolución de ejercicios.",
-          "Expliqué estructuras de control, algoritmos y buenas prácticas, ayudando a desarrollar el pensamiento computacional.",
+          "Expliqué estructuras de control, algoritmos y buenas prácticas de código.",
         ],
       },
     },
@@ -62,56 +59,50 @@ export const es: Translations = {
   projects: {
     title: "Proyectos",
     labels: {
-      live: "Ver en vivo",
-      demo: "Demo",
+      live: "Ver sitio",
+      demo: "Ver demo",
       code: "Código",
       inProgress: "En desarrollo",
-      privateRepo: "Repositorio privado · código disponible a pedido",
+      privateRepo: "Repositorio privado. Si querés ver el código, pedímelo.",
     },
     items: {
       gameRanking: {
         description:
           "API REST para organizar torneos entre grupos de amigos: espacios multi-tenant, distintas modalidades de competencia y un ranking por puntos.",
         highlights: [
-          "Modalidades Playoff y Round Robin de punta a punta: fixture, carga de resultados y tabla de posiciones.",
-          "Motor de puntos por modalidad y cierre de torneo con campeones y desempate final.",
+          "Modalidades Playoff y Round Robin completas: fixture, carga de resultados y tabla de posiciones.",
+          "Puntos según la modalidad y cierre de torneo con campeones y desempate final.",
           "Autenticación JWT propia y validación de datos con class-validator.",
-          "Tests unitarios con Jest y decisiones de diseño documentadas en una bitácora técnica.",
+          "Tests unitarios con Jest y una bitácora con las decisiones de diseño.",
         ],
       },
       foodStore: {
         description:
-          "Sistema de gestión de pedidos de comida desarrollado en un equipo de 4 personas: una tienda para clientes y un panel de administración en React, conectados a una API en Python.",
+          "Sistema de pedidos de comida hecho en un equipo de 4 personas: una tienda para clientes y un panel de administración en React, conectados a una API en Python.",
       },
       airland: {
         description:
-          "E-commerce de zapatillas Air Force 1 desarrollado en un equipo de 5 personas, con frontend y backend en un monorepo. Incluye autenticación, panel de administrador, ordenamiento de productos y pagos integrados.",
+          "E-commerce de zapatillas Air Force 1 hecho en un equipo de 5 personas, con frontend y backend en un monorepo. Tiene autenticación, panel de administración, ordenamiento de productos y pagos.",
       },
       pokeapp: {
         description:
-          "SPA full stack (monorepo) que consume la PokeAPI. Incluye ordenamiento de tarjetas, creación de Pokémon mediante un formulario controlado y un CRUD completo sobre PostgreSQL.",
+          "SPA full stack en un monorepo que consume la PokeAPI. Permite ordenar las tarjetas, crear Pokémon con un formulario controlado y hacer el CRUD completo sobre PostgreSQL.",
       },
     },
   },
 
   contact: {
     title: "Contacto",
-    description:
-      "¿Te interesa trabajar conmigo o querés saber más sobre mis proyectos? Enviame un mensaje.",
+    description: "Si tenés una propuesta de trabajo o querés preguntarme algo sobre un proyecto, escribime.",
     form: {
       name: "Nombre",
       email: "Email",
       message: "Mensaje",
       send: "Enviar mensaje",
       sending: "Enviando...",
-      success: "¡Gracias! Tu mensaje fue enviado. Te respondo a la brevedad.",
+      success: "Mensaje enviado. Te respondo por email.",
       error: "No se pudo enviar el mensaje. Probá de nuevo o escribime por LinkedIn.",
     },
-  },
-
-  footer: {
-    rights: "Todos los derechos reservados.",
-    builtWith: "Construido con React + TypeScript",
   },
 
   navbar: {

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* Design tokens (Tailwind v4): generan bg-surface, text-accent, border-line, font-mono, etc. */
+/* Design tokens (Tailwind v4): generan bg-surface, text-ink, border-line, etc.
+   Grafito cálido en vez de negro puro, un solo color de texto principal
+   y un acento violeta para links, foco, el botón principal y las tarjetas. */
 @theme {
-  --color-surface: #09090b;
-  --color-card: #111114;
-  --color-line: #27272a;
-  --color-muted: #a1a1aa;
-  --color-accent: #818cf8; /* texto, links, bordes activos (AA sobre surface) */
-  --color-accent-strong: #4f46e5; /* fondo del CTA con texto blanco */
-  --color-accent-hover: #6366f1;
+  --color-surface: #16181c;
+  --color-raised: #1d2025; /* inputs */
+  --color-line: #2c3037;
+  --color-ink: #ebe8e3;
+  --color-muted: #9d9a94;
+  --color-accent: #a78bfa;
 
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -26,83 +26,32 @@ html {
 
 body {
   background-color: var(--color-surface);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: rgb(99 102 241 / 0.4);
-  color: white;
+  background-color: rgb(167 139 250 / 0.35);
+  color: var(--color-ink);
 }
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 2px;
 }
 
-/* Grilla sutil que se desvanece hacia abajo y a los costados */
-@utility bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 100%);
-}
+/* Link de texto: subrayado fino que toma el acento al pasar el mouse */
+@utility text-link {
+  color: var(--color-ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 150ms, color 150ms;
 
-/* Texto con gradiente blanco → índigo claro */
-@utility text-gradient {
-  background-image: linear-gradient(110deg, #ffffff 30%, #c7d2fe 60%, #818cf8 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-@layer components {
-  /* Spotlight: gradiente que sigue al mouse (--x / --y los setea Card) */
-  .spotlight {
-    position: relative;
-    isolation: isolate;
-  }
-  .spotlight::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: radial-gradient(
-      400px circle at var(--x, 50%) var(--y, 50%),
-      rgb(99 102 241 / 0.12),
-      transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 300ms;
-    pointer-events: none;
-  }
-  .spotlight:hover::before {
-    opacity: 1;
-  }
-
-  /* Reveal: aparición suave al entrar en pantalla */
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 600ms ease-out,
-      transform 600ms ease-out;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    .spotlight::before {
-      display: none;
-    }
+  &:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 }

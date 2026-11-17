@@ -1,15 +1,13 @@
 import type { AnchorHTMLAttributes } from "react";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "secondary";
 
 const base =
-  "inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm font-medium transition-all duration-300 motion-safe:hover:-translate-y-0.5";
+  "inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium transition-colors duration-150";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "border-accent-strong bg-accent-strong text-white shadow-[0_0_24px] shadow-accent-hover/30 hover:border-accent-hover hover:bg-accent-hover hover:shadow-accent-hover/50",
-  outline: "border-accent/40 text-accent hover:border-accent hover:bg-accent/10",
-  ghost: "border-line bg-white/5 text-white hover:border-accent/50 hover:text-accent",
+  primary: "border-accent bg-accent text-surface hover:border-ink hover:bg-ink",
+  secondary: "border-line text-ink hover:border-accent hover:text-accent",
 };
 
 type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -19,7 +17,7 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 export default function ButtonLink({
-  variant = "ghost",
+  variant = "secondary",
   external = false,
   className = "",
   children,

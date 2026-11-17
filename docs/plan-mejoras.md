@@ -129,6 +129,18 @@ Hoy cada proyecto/trabajo está **duplicado** en `es.ts` y `en.ts` (URLs, tecnol
 
 **Listo cuando**: Lighthouse Accessibility > 95 y se ve bien en 375px.
 
+### Fase 6b — Sacar el "aire de IA"
+
+`refactor(ui): replace template styling with a plain typographic layout`
+
+> El estilo "Profundidad y luz" era la plantilla por defecto de las landings generadas. Se reemplazó por un layout tipográfico: grafito #16181c, texto #ebe8e3, acento violeta #a78bfa (links, foco, botón principal y tarjetas), IBM Plex Sans como única familia. Se mantuvieron a pedido el "Sobre mí" original y las tarjetas de Tecnologías.
+
+- [x] Fuera: manchas de luz, grilla de fondo, texto en gradiente, badge "Disponible", eyebrows `// TÍTULO`, fuente mono, spotlight, cards glass, bento, fade-ups, flechas ↗ y emoji
+- [x] Secciones con título a la izquierda y contenido a la derecha; tecnologías en tarjetas por categoría
+- [x] Textos reescritos sin relleno ("escalables", "sólidas", "calidad y mantenibilidad"); se quitó la categoría "Conceptos"
+- [x] OG image y favicon regenerados con la paleta nueva
+- [ ] Revisar los textos con tu propia voz (tagline y "Sobre mí")
+
 ---
 
 ## Fase 7 — Repo y publicación

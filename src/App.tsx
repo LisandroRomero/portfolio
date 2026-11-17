@@ -9,9 +9,9 @@ import Footer from "./sections/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-clip bg-surface font-sans text-white">
+    <div className="min-h-screen overflow-x-clip bg-surface font-sans text-ink">
       <NavBar />
-      <main className="mx-auto max-w-5xl px-6">
+      <main className="mx-auto max-w-4xl px-6">
         <Hero />
         <About />
         <Skills />

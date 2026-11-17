@@ -3,19 +3,18 @@ import type { Translations } from "./types";
 export const en: Translations = {
   hero: {
     title: "Lisandro Romero",
-    role: "Full Stack Developer",
-    status: "Open to work",
+    role: "Full stack developer in Mendoza, Argentina",
     tagline:
-      "Full Stack Developer with a backend focus: I design solid APIs and connect them to React and Next.js interfaces.",
+      "I work across the stack, but the backend is where I do my best work: modeling the business, designing the API, and getting it ready for a React or Next.js frontend.",
     buttons: {
       github: "GitHub",
       linkedin: "LinkedIn",
-      cv: "Download CV",
+      cv: "Download CV (PDF)",
     },
   },
 
   about: {
-    title: "About Me",
+    title: "About",
     description: [
       "Recent graduate in Programming from the National Technological University (UTN - FRM) and Full Stack Developer with hands-on experience in real-world projects.",
       "I build scalable web applications across frontend and backend, with a focus on code quality, maintainability, and user experience.",
@@ -26,13 +25,11 @@ export const en: Translations = {
   skills: {
     title: "Technologies",
     categories: {
-      frontend: "Frontend",
       backend: "Backend",
       databases: "Databases",
+      frontend: "Frontend",
       tools: "Tools",
-      concepts: "Concepts",
     },
-    concepts: ["REST APIs", "Layered Architecture", "OOP", "Testing"],
   },
 
   experience: {
@@ -40,20 +37,20 @@ export const en: Translations = {
     present: "Present",
     jobs: {
       unveil: {
-        role: "Full Stack Developer",
+        role: "Full stack developer",
         highlights: [
           "Built frontend and backend features for a restaurant management SaaS running in production.",
-          "Implemented automated reservations via WhatsApp and phone calls using conversational AI.",
+          "Implemented automated reservations over WhatsApp and phone calls, handled by conversational AI.",
           "Modeled the business logic for tables, zones, reservations, orders, payments, and users.",
-          "Integrated POS systems with Square and handled subscriptions and plans with Stripe.",
-          "Took part in deployments and in managing development, testing, and production environments.",
+          "Integrated point-of-sale systems with Square, and subscriptions and plans with Stripe.",
+          "Worked on deployments and on the development, testing, and production environments.",
         ],
       },
       utnTutor: {
-        role: "Programming Tutor",
+        role: "Programming tutor",
         highlights: [
-          "Mentored first-year students of the Programming Technician program while solving exercises.",
-          "Explained control structures, algorithms, and best practices, helping students build computational thinking.",
+          "Helped first-year students of the Programming Technician program work through their exercises.",
+          "Explained control structures, algorithms, and good coding practices.",
         ],
       },
     },
@@ -62,62 +59,56 @@ export const en: Translations = {
   projects: {
     title: "Projects",
     labels: {
-      live: "Live site",
-      demo: "Demo",
+      live: "View site",
+      demo: "Watch demo",
       code: "Code",
       inProgress: "In progress",
-      privateRepo: "Private repository · code available on request",
+      privateRepo: "Private repository. Ask me if you'd like to see the code.",
     },
     items: {
       gameRanking: {
         description:
-          "REST API for running tournaments among groups of friends: multi-tenant spaces, multiple competition formats, and a points-based ranking.",
+          "REST API for running tournaments among groups of friends: multi-tenant spaces, several competition formats, and a points-based ranking.",
         highlights: [
-          "End-to-end Playoff and Round Robin formats: fixtures, result submission, and standings.",
-          "Per-format points engine and tournament closing with champions and a final tiebreaker.",
+          "Complete Playoff and Round Robin formats: fixtures, result entry, and standings.",
+          "Points per format and tournament closing with champions and a final tiebreaker.",
           "Custom JWT authentication and input validation with class-validator.",
-          "Unit tests with Jest and design decisions documented in a technical log.",
+          "Unit tests with Jest and a log of the design decisions.",
         ],
       },
       foodStore: {
         description:
-          "Food order management system built by a team of four: a customer storefront and an admin dashboard in React, backed by a Python API.",
+          "Food ordering system built by a team of four: a customer storefront and an admin dashboard in React, connected to a Python API.",
       },
       airland: {
         description:
-          "Air Force 1 sneakers e-commerce built by a team of five, with frontend and backend in a monorepo. Features authentication, an admin dashboard, product sorting, and integrated payments.",
+          "Air Force 1 sneaker e-commerce built by a team of five, with frontend and backend in a monorepo. It has authentication, an admin dashboard, product sorting, and payments.",
       },
       pokeapp: {
         description:
-          "Full stack SPA (monorepo) that consumes the PokeAPI. Includes card sorting, Pokémon creation through a controlled form, and a complete CRUD backed by PostgreSQL.",
+          "Full stack SPA in a monorepo that consumes the PokeAPI. You can sort the cards, create Pokémon through a controlled form, and run the full CRUD on PostgreSQL.",
       },
     },
   },
 
   contact: {
     title: "Contact",
-    description:
-      "Interested in working with me or learning more about my projects? Send me a message.",
+    description: "If you have a job opportunity or a question about one of my projects, send me a message.",
     form: {
       name: "Name",
       email: "Email",
       message: "Message",
       send: "Send message",
       sending: "Sending...",
-      success: "Thanks! Your message was sent. I'll get back to you soon.",
-      error: "The message couldn't be sent. Please try again or reach me on LinkedIn.",
+      success: "Message sent. I'll reply by email.",
+      error: "The message didn't go through. Try again or reach me on LinkedIn.",
     },
-  },
-
-  footer: {
-    rights: "All rights reserved.",
-    builtWith: "Built with React + TypeScript",
   },
 
   navbar: {
     home: "Home",
     about: "About",
-    skills: "Skills",
+    skills: "Technologies",
     experience: "Experience",
     projects: "Projects",
     contact: "Contact",

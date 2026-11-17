@@ -9,7 +9,6 @@ export interface Translations {
     title: string;
     role: string;
     tagline: string;
-    status: string;
     buttons: { github: string; linkedin: string; cv: string };
   };
   about: {
@@ -19,7 +18,6 @@ export interface Translations {
   skills: {
     title: string;
     categories: Record<SkillCategory, string>;
-    concepts: string[];
   };
   experience: {
     title: string;
@@ -43,10 +41,6 @@ export interface Translations {
       success: string;
       error: string;
     };
-  };
-  footer: {
-    rights: string;
-    builtWith: string;
   };
   navbar: {
     home: string;

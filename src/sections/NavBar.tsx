@@ -44,8 +44,8 @@ export default function NavBar() {
   }, []);
 
   const linkClass = (id: string) =>
-    `relative block py-1 transition-colors duration-300 ${
-      activeSection === id ? "text-white" : "text-muted hover:text-white"
+    `block py-1 transition-colors duration-150 ${
+      activeSection === id ? "text-ink" : "text-muted hover:text-ink"
     }`;
 
   const renderLinks = (onClick?: () => void) =>
@@ -58,28 +58,23 @@ export default function NavBar() {
           aria-current={activeSection === id ? "true" : undefined}
         >
           {t.navbar[label]}
-          {activeSection === id && (
-            <span className="absolute -bottom-1 left-0 hidden h-px w-full bg-accent md:block" />
-          )}
         </a>
       </li>
     ));
 
   return (
     <nav
-      className={`fixed top-0 left-0 z-50 w-full border-b transition-colors duration-300 ${
-        scrolled || menuOpen
-          ? "border-line bg-surface/70 backdrop-blur-md"
-          : "border-transparent bg-transparent"
+      className={`fixed top-0 left-0 z-50 w-full border-b bg-surface transition-colors duration-150 ${
+        scrolled || menuOpen ? "border-line" : "border-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <a
           href="#hero"
           aria-label={t.navbar.home}
-          className="font-mono text-sm font-semibold tracking-wider text-white transition-colors hover:text-accent"
+          className="text-sm font-semibold text-ink transition-colors hover:text-accent"
         >
-          LR<span className="text-accent">.</span>
+          Lisandro Romero
         </a>
 
         <div className="flex items-center gap-6">
@@ -89,7 +84,7 @@ export default function NavBar() {
             type="button"
             onClick={toggleLanguage}
             aria-label={t.navbar.switchLang}
-            className="rounded-full border border-line px-3 py-1 font-mono text-xs text-muted transition hover:border-accent/50 hover:text-white"
+            className="rounded-md border border-line px-2.5 py-1 text-xs text-muted transition-colors hover:border-muted hover:text-ink"
           >
             {lang === "es" ? "EN" : "ES"}
           </button>
@@ -100,7 +95,7 @@ export default function NavBar() {
             aria-label={menuOpen ? t.navbar.closeMenu : t.navbar.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="text-xl text-white md:hidden"
+            className="text-xl text-ink md:hidden"
           >
             {menuOpen ? "✕" : "☰"}
           </button>

@@ -1,9 +1,4 @@
-import ButtonLink from "../components/ui/ButtonLink";
-import Card from "../components/ui/Card";
-import Reveal from "../components/ui/Reveal";
 import Section from "../components/ui/Section";
-import SectionTitle from "../components/ui/SectionTitle";
-import Tag from "../components/ui/Tag";
 import { useLanguage } from "../context/languageContext";
 import { PROJECTS, visibleProjects, type Project } from "../data/projects";
 
@@ -11,100 +6,61 @@ function Projects() {
   const { translations: t } = useLanguage();
   const { labels } = t.projects;
 
-  const renderLinks = (project: Project) => {
+  const links = (project: Project) => {
     const { live, demo, repos } = project.links;
-    if (!live && !demo && repos.length === 0) return null;
-
-    return (
-      <div className="flex flex-wrap gap-3">
-        {live && (
-          <ButtonLink href={live} variant="primary" external>
-            {labels.live} ↗
-          </ButtonLink>
-        )}
-        {demo && (
-          <ButtonLink href={demo} variant="outline" external>
-            {labels.demo} ↗
-          </ButtonLink>
-        )}
-        {repos.map((repo) => (
-          <ButtonLink key={repo.url} href={repo.url} external>
-            {repo.label ?? labels.code}
-          </ButtonLink>
-        ))}
-      </div>
-    );
+    return [
+      ...(live ? [{ href: live, label: labels.live }] : []),
+      ...(demo ? [{ href: demo, label: labels.demo }] : []),
+      ...repos.map((repo) => ({
+        href: repo.url,
+        label: repo.label ? `${labels.code} (${repo.label})` : labels.code,
+      })),
+    ];
   };
 
   return (
-    <Section id="projects">
-      <Reveal>
-        <SectionTitle>{t.projects.title}</SectionTitle>
-      </Reveal>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {visibleProjects(PROJECTS).map((project, i) => {
+    <Section id="projects" title={t.projects.title}>
+      <ul className="space-y-14">
+        {visibleProjects(PROJECTS).map((project) => {
           const text = t.projects.items[project.id];
-          const featured = project.featured;
+          const projectLinks = links(project);
 
           return (
-            <Reveal
-              key={project.id}
-              delay={featured ? 0 : i * 80}
-              className={featured ? "md:col-span-2 lg:col-span-3" : ""}
-            >
-              <Card
-                interactive
-                className={`flex h-full flex-col gap-5 ${
-                  featured ? "bg-linear-to-br from-accent-strong/15 to-transparent ring-1 ring-accent/20 md:p-8" : ""
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 className={`font-semibold text-white ${featured ? "text-2xl" : "text-lg"}`}>
-                    {project.name}
-                  </h3>
-                  {project.inProgress && (
-                    <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] text-accent">
-                      {labels.inProgress}
-                    </span>
-                  )}
+            <li key={project.id}>
+              <h3 className="text-lg font-semibold">
+                {project.name}
+                {project.inProgress && (
+                  <span className="ml-3 text-sm font-normal text-muted">{labels.inProgress}</span>
+                )}
+              </h3>
+
+              <p className="mt-3 max-w-2xl leading-relaxed">{text.description}</p>
+
+              {text.highlights && (
+                <ul className="mt-4 max-w-2xl list-disc space-y-2 pl-5 leading-relaxed marker:text-muted">
+                  {text.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+
+              <p className="mt-4 text-sm text-muted">{project.technologies.join(", ")}</p>
+
+              {projectLinks.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                  {projectLinks.map(({ href, label }) => (
+                    <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="text-link">
+                      {label}
+                    </a>
+                  ))}
                 </div>
+              )}
 
-                <div className={featured ? "grid gap-6 md:grid-cols-2" : ""}>
-                  <p className="leading-relaxed text-muted">{text.description}</p>
-
-                  {text.highlights && (
-                    <ul className="space-y-2 text-sm leading-relaxed text-muted">
-                      {text.highlights.map((item) => (
-                        <li key={item} className="flex gap-3">
-                          <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                <div className="mt-auto flex flex-col gap-5">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <Tag key={tech} variant={featured ? "accent" : "neutral"}>
-                        {tech}
-                      </Tag>
-                    ))}
-                  </div>
-
-                  {renderLinks(project)}
-
-                  {project.privateRepo && (
-                    <p className="font-mono text-xs text-muted">🔒 {labels.privateRepo}</p>
-                  )}
-                </div>
-              </Card>
-            </Reveal>
+              {project.privateRepo && <p className="mt-4 text-sm text-muted">{labels.privateRepo}</p>}
+            </li>
           );
         })}
-      </div>
+      </ul>
     </Section>
   );
 }

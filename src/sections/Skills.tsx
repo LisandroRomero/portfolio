@@ -1,46 +1,28 @@
-import Card from "../components/ui/Card";
-import Reveal from "../components/ui/Reveal";
 import Section from "../components/ui/Section";
-import SectionTitle from "../components/ui/SectionTitle";
-import Tag from "../components/ui/Tag";
 import { useLanguage } from "../context/languageContext";
-import { SKILL_CATEGORY_ORDER, TECH_SKILLS, type SkillCategory } from "../data/skills";
-
-// Bento: frontend y backend ocupan más espacio que el resto
-const SPAN: Partial<Record<SkillCategory, string>> = {
-  frontend: "md:col-span-3",
-  backend: "md:col-span-3",
-};
+import { SKILL_CATEGORY_ORDER, TECH_SKILLS } from "../data/skills";
 
 function Skills() {
   const { translations: t } = useLanguage();
-  const { title, categories, concepts } = t.skills;
 
   return (
-    <Section id="skills">
-      <Reveal>
-        <SectionTitle>{title}</SectionTitle>
-      </Reveal>
-
-      <div className="grid gap-4 md:grid-cols-6">
-        {SKILL_CATEGORY_ORDER.map((category, i) => {
-          const skills = category === "concepts" ? concepts : TECH_SKILLS[category];
-
-          return (
-            <Reveal key={category} delay={i * 80} className={SPAN[category] ?? "md:col-span-2"}>
-              <Card interactive className="h-full">
-                <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-muted">
-                  {categories[category]}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <Tag key={skill}>{skill}</Tag>
-                  ))}
-                </div>
-              </Card>
-            </Reveal>
-          );
-        })}
+    <Section id="skills" title={t.skills.title}>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {SKILL_CATEGORY_ORDER.map((category) => (
+          <div
+            key={category}
+            className="rounded-xl border border-line bg-raised p-5 transition-colors duration-150 hover:border-accent/50"
+          >
+            <h3 className="mb-4 text-sm font-semibold text-accent">{t.skills.categories[category]}</h3>
+            <ul className="flex flex-wrap gap-2">
+              {TECH_SKILLS[category].map((skill) => (
+                <li key={skill} className="rounded-md border border-line bg-surface px-2.5 py-1 text-sm">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </Section>
   );
